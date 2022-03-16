@@ -1,5 +1,4 @@
 from __future__ import annotations
-from xml.dom.minidom import Document
 from tinydb import TinyDB
 from typing import TypeVar, Generic, Type
 
@@ -26,6 +25,7 @@ class TinyDbService(Generic[T]):
   def __init__(self, db: TinyDB, modelClass: Type[T]):
     self.db = db
     self.modelClass = modelClass
+    
 
   """Fetch all documents form tinydb"""
   def find_multiple(self):
@@ -38,10 +38,10 @@ class TinyDbService(Generic[T]):
     return document
 
   def find_by_id(self, id: int):
-    return self.db.get(doc_id=id)
+    return self.marshall(self.db.get(doc_id=id))
 
   """Marshall a model object from a tinydb document"""
-  def marshall(self, doc: Document):
+  def marshall(self, doc):
     model = self.modelClass()
     for key in doc:
       setattr(model, key, doc[key])

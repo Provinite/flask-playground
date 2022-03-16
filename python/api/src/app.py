@@ -15,7 +15,7 @@ def getIngredients():
 
 @app.route("/ingredients/<ingredient_id>")
 def getIngredient(ingredient_id):
-  return jsonify(IngredientController.find_by_id(int(ingredient_id)))
+  return jsonify(IngredientController.find_by_id(int(ingredient_id)).__dict__)
 
 @app.route("/ingredients", methods = ["POST"])
 def createIngredient():
@@ -29,7 +29,7 @@ def createIngredient():
   ingredient.cost = json["cost"] if "cost" in json else None
 
   # save the model and return it as the response body
-  return IngredientController.insert(ingredient).__dict__
+  return jsonify(IngredientController.insert(ingredient).__dict__)
 
 @app.route("/recipes")
 def getRecipes():
@@ -40,8 +40,8 @@ def getRecipes():
   return jsonify([m.__dict__ for m in result])
 
 @app.route("/recipes/<recipe_id>")
-def getRecipe(ingredient_id):
-  return jsonify(RecipeController.find_by_id(int(ingredient_id)))
+def getRecipe(recipe_id):
+  return jsonify(RecipeController.find_by_id(int(recipe_id)).__dict__)
 
 @app.route("/recipes", methods = ["POST"])
 def createRecipe():
