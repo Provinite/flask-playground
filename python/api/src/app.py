@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 
-from models.ingredient import Ingredient
-from models.ingredientController import IngredientController
-from models.recipeController import RecipeController
-from models.recipe import Recipe
+from models.ingredient.ingredient import Ingredient
+from models.ingredient.ingredientController import IngredientController
+from models.recipe.recipeController import RecipeController
+from models.recipe.recipe import Recipe
 
 """Flask app"""
 app = Flask(__name__)
