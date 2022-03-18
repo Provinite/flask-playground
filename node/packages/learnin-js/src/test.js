@@ -1,0 +1,4 @@
+
+// variables
+
+    let somVar = "aStr"

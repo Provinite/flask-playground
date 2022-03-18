@@ -4,14 +4,16 @@ from models.ingredient.ingredient import Ingredient
 from models.ingredient.ingredientController import IngredientController
 from models.recipe.recipeController import RecipeController
 from models.recipe.recipe import Recipe
-
+from flask_cors import CORS
 """Flask app"""
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/ingredients")
 def getIngredients():
   result = IngredientController.find_multiple()
   return jsonify([m.__dict__ for m in result])
+
 
 @app.route("/ingredients/<ingredient_id>")
 def getIngredient(ingredient_id):
@@ -22,7 +24,7 @@ def createIngredient():
   # create a new model
   ingredient = Ingredient()
   # get the JSON request body
-  json = request.get_json()
+  json = request.get_json(force = True)
 
   # transcribe data from request body onto the model
   ingredient.name = json["name"] if "name" in json else None
@@ -46,7 +48,7 @@ def getRecipe(recipe_id):
 @app.route("/recipes", methods = ["POST"])
 def createRecipe():
   recipe = Recipe()
-  json = request.get_json()
+  json = request.get_json(force=True)
   recipe.name = json["name"] if "name" in json else None
   return RecipeController.insert(recipe).__dict__
 
