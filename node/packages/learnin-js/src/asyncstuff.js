@@ -30,12 +30,21 @@ function add(a, b) {
 }
 
 // Loops are also synchronous
-function add(numbers) {
+function addAll(numbers) {
   let result = 0;
   for (const number of numbers) {
     result += number;
   }
   return result;
+}
+
+// calling other functions is totally synchronous
+function addAllWithAdd(numbers) {
+  let sum = 0;
+  for (const number of numbers) {
+    sum = add(sum, number);
+  }
+  return sum;
 }
 
 /**
