@@ -6,10 +6,11 @@
  */
 import { help } from "./commands/help.mjs";
 import { getRecipe } from "./commands/getRecipe.mjs";
-
+import { createSampleData } from "./commands/createSampleData.mjs";
 const functions = {
   help,
   getRecipe,
+  createSampleData,
 };
 
 /**
@@ -53,6 +54,7 @@ function runCommand() {
           param: param || undefined,
           errorName: err.name,
           errorMessage: err.message,
+          stack: err.stack,
         };
         // pretty-print
         console.error(JSON.stringify(result, null, 2));

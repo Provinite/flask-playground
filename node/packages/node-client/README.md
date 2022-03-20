@@ -8,6 +8,15 @@ npm start [command] [param]
 
 (try `npm start` to get a list of commands and params)
 
+# Quick Start
+
+- Start the python API
+
+```bash
+npm start createSampleData
+npm start getRecipe 1
+```
+
 # Package Structure
 
 `src/client.mjs` is the main entry point

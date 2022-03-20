@@ -115,6 +115,18 @@ class CrudService {
       return response.json();
     });
   }
+
+  create(body) {
+    return fetch(this.getListRoute(), {
+      method: "POST",
+      body: JSON.stringify(body),
+    }).then((response) => {
+      if (!response.ok) {
+        throw new APIError(response);
+      }
+      return response.json();
+    });
+  }
 }
 
 export const recipeService = new CrudService("recipes");

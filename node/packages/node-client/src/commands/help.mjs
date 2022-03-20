@@ -18,9 +18,9 @@ export function help() {
   const usageTable = [
     ["help", "", "Display this message"],
     ["getRecipe", "id: int - id of recipe", "fetch a recipe by id"],
-    ["getAll", "", "Fetch all recipes and ingredients"],
+    ["createSampleData", "", "Create some sample data in the db for testing"],
   ];
-  const colWidths = [15, 30, 70];
+  const colWidths = [20, 30, 70];
   const getTableRow = (row, separator = ".", padChar = " ") => {
     // table starts with a | on every row (left border)
     let result = "|";
