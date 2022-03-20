@@ -5,5 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "src/app.js"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0"
   }
 }

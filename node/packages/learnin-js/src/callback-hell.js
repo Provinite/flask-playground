@@ -39,6 +39,7 @@ function fig1() {
    * }
    * ```
    */
+
   /**
    * First, here's the code if everything was synchronous
    *
@@ -118,7 +119,7 @@ function fig1() {
        * call the top-level callback.
        */
       function processNextTask() {
-        // remove the first element from the tasks array, and put it in task
+        // remove the first element from the tasks array, and put it in the `task`variable
         const task = tasksToDo.shift();
 
         // we're out of tasks to do, invoke the top-level callback
@@ -128,7 +129,7 @@ function fig1() {
           return; // stop executing so we don't infinitely loop below (or crash)
         }
 
-        // run the task, and use processNextTask as its callback
+        // run the task, and run `processNextTask` when its done
         task(processNextTask);
       }
     });
