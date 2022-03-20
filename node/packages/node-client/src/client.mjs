@@ -7,6 +7,20 @@
 import { help } from "./commands/help.mjs";
 import { getRecipe } from "./commands/getRecipe.mjs";
 import { createSampleData } from "./commands/createSampleData.mjs";
+
+/**
+ * This is the same as
+ * ```js
+ * const functions = {
+ *   "help": help,
+ *   "getRecipe": getRecipe,
+ *   "createSampleData": createSampleData,
+ * };
+ * ```
+ * just a shorthand form.
+ *
+ * These are the functions available to execute from the CLI.
+ */
 const functions = {
   help,
   getRecipe,
