@@ -73,4 +73,10 @@ function addAllWithAdd(numbers) {
  * some of the problems with the callback pattern.
  *
  * @see callback-hell.js
+ *
+ * If you want to learn a bit more about what callback usage is like in the "real world",
+ * check out @see error-first-callbacks.js
+ *
+ * If you'd like to read on to some more relevant modern technologies used to manage
+ * asynchronous workflows, @see promises.js
  */
