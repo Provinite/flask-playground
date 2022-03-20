@@ -4,21 +4,30 @@
  * version. You'll want to understand both, but for now, mjs enables some convenient
  * syntax for us.
  */
+import { help } from "./commands/help.mjs";
 import { ingredientService, recipeService } from "./services.mjs";
 
-function main() {
-  recipeService
-    .getAll()
-    .then((recipes) => {
-      console.log(recipes);
-    })
-    .catch((err) => {
-      console.error(
-        "Something went wrong. Retrying in 3 seconds. Original message:\n " +
-          err.message
-      );
-      setTimeout(main, 3000);
-    });
-}
+const functions = {
+  help,
+};
 
-main();
+/**
+ * When you run `node script.mjs foo`, `process.argv` will look
+ * like `["node", "script.mjs", "foo"]`
+ */
+const [executableName, scriptName, commandName] = process.argv;
+
+runCommand(commandName);
+
+function runCommand() {
+  console.log(`Received Command: ${commandName || "None"}`);
+  const command = functions[commandName];
+  if (!command) {
+    console.error("Unknown command");
+    help();
+    process.exitCode = 1;
+    return;
+  } else {
+    command();
+  }
+}
