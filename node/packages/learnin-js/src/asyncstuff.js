@@ -67,3 +67,10 @@ function addAllWithAdd(numbers) {
  * So, what if we wanted to return a value from an asynchronous function?
  * @see async-callbacks.js
  */
+
+/**
+ * Now we have all the tools we need to get data back from asynchronous functions. Now let's talk about
+ * some of the problems with the callback pattern.
+ *
+ * @see callback-hell.js
+ */
