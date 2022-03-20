@@ -42,6 +42,7 @@ function runCommand() {
           param: param || undefined,
           response: response || "None",
         };
+
         // pretty-print
         console.log(JSON.stringify(result, null, 2));
       })

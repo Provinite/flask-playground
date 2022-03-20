@@ -224,17 +224,5 @@ function fig3() {
  * you can hopefully see how promises can begin to really simplify callback code with its ability
  * to flatten out big deep callback chains & sequencing features.
  *
- * @see irl/promises/client.mjs for a node CLI client that uses promises to interact with the python API
- *
- * Let's do something more realistic with promises, and add some error handling.
- *
- * This example will be using the
- * ```js
- * fetch(url, options)
- * ```
- * API. This API is standard in the browser, and coming to nodejs in version 17,
- * butfor now we'll use a dependency called "isomorphic-fetch" to provide it.
+ * @see node-client package for a node CLI client that uses promises to interact with the python API
  */
-require("isomorphic-fetch"); // requiring this makes `fetch` available globally
-
-function fig2() {}
