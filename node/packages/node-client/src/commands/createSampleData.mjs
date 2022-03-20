@@ -1,5 +1,11 @@
 import { ingredientService, recipeService } from "../services.mjs";
+/**
+ * This function creates some sample data in the database for
+ * testing purposes.
+ * @returns
+ */
 export function createSampleData() {
+  // we'll fill these arrays as we create stuff
   const ingredients = [];
   const recipes = [];
 
@@ -12,6 +18,7 @@ export function createSampleData() {
     ingredientService.create(body).then((model) => {
       ingredients.push(model);
     });
+
   return Promise.resolve()
     .then(() =>
       createAndSaveIngredient({
@@ -26,8 +33,9 @@ export function createSampleData() {
       })
     )
     .then(() =>
+      // create a recipe that uses both ingredients
       createAndSaveRecipe({
-        name: "Victory",
+        name: "Victory Pie",
         items: [
           {
             ingredientId: ingredients[0].id,
