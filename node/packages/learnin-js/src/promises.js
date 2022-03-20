@@ -224,6 +224,8 @@ function fig3() {
  * you can hopefully see how promises can begin to really simplify callback code with its ability
  * to flatten out big deep callback chains & sequencing features.
  *
+ * @see irl/promises/client.mjs for a node CLI client that uses promises to interact with the python API
+ *
  * Let's do something more realistic with promises, and add some error handling.
  *
  * This example will be using the
