@@ -5,22 +5,25 @@
  * syntax for us.
  */
 import { help } from "./commands/help.mjs";
-import { ingredientService, recipeService } from "./services.mjs";
+import { getRecipe } from "./commands/getRecipe.mjs";
 
 const functions = {
   help,
+  getRecipe,
 };
 
 /**
  * When you run `node script.mjs foo`, `process.argv` will look
  * like `["node", "script.mjs", "foo"]`
  */
-const [executableName, scriptName, commandName] = process.argv;
+const [executableName, scriptName, commandName, param] = process.argv;
 
 runCommand(commandName);
 
 function runCommand() {
-  console.log(`Received Command: ${commandName || "None"}`);
+  console.log(
+    `Received Command: ${commandName || "None"}, Param: ${param || "None"}`
+  );
   const command = functions[commandName];
   if (!command) {
     console.error("Unknown command");
@@ -28,6 +31,30 @@ function runCommand() {
     process.exitCode = 1;
     return;
   } else {
-    command();
+    // wrap in Promise.resolve() here so that functions
+    // that don't return promises are safely wrapped
+    Promise.resolve()
+      .then(() => command(param))
+      .then((response) => {
+        const result = {
+          status: "success",
+          command: commandName,
+          param: param || undefined,
+          response: response || "None",
+        };
+        // pretty-print
+        console.log(JSON.stringify(result, null, 2));
+      })
+      .catch((err) => {
+        const result = {
+          status: "error",
+          command: commandName,
+          param: param || undefined,
+          errorName: err.name,
+          errorMessage: err.message,
+        };
+        // pretty-print
+        console.error(JSON.stringify(result, null, 2));
+      });
   }
 }

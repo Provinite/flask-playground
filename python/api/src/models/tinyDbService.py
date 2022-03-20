@@ -38,7 +38,8 @@ class TinyDbService(Generic[T]):
     return document
 
   def find_by_id(self, id: int):
-    return self.marshall(self.db.get(doc_id=id))
+    doc = self.db.get(doc_id=id)
+    return self.marshall(doc) if doc else None
 
   """Marshall a model object from a tinydb document"""
   def marshall(self, doc):

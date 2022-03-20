@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, Response, jsonify
 
 from models.ingredient.ingredient import Ingredient
 from models.ingredient.ingredientController import IngredientController
@@ -17,7 +17,13 @@ def getIngredients():
 
 @app.route("/ingredients/<ingredient_id>")
 def getIngredient(ingredient_id):
-  return jsonify(IngredientController.find_by_id(int(ingredient_id)).__dict__)
+  model = IngredientController.find_by_id(int(ingredient_id))
+  if model is None:
+    response = jsonify(error="NotFound")
+    response.status_code = 404
+    return response
+  else:
+    return jsonify(model.__dict__)
 
 @app.route("/ingredients", methods = ["POST"])
 def createIngredient():
@@ -43,13 +49,20 @@ def getRecipes():
 
 @app.route("/recipes/<recipe_id>")
 def getRecipe(recipe_id):
-  return jsonify(RecipeController.find_by_id(int(recipe_id)).__dict__)
+  model = RecipeController.find_by_id(int(recipe_id))
+  if model is None:
+    response = jsonify(error="NotFound")
+    response.status_code = 404
+    return response
+  else:
+    return jsonify(model.__dict__)
 
 @app.route("/recipes", methods = ["POST"])
 def createRecipe():
   recipe = Recipe()
   json = request.get_json(force=True)
   recipe.name = json["name"] if "name" in json else None
+  recipe.items = json["items"] if "items" in json else None
   return RecipeController.insert(recipe).__dict__
 
 if __name__ == "__main__":
