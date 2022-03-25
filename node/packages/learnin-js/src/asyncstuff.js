@@ -79,4 +79,11 @@ function addAllWithAdd(numbers) {
  *
  * If you'd like to read on to some more relevant modern technologies used to manage
  * asynchronous workflows, @see promises.js
+ *
+ * Promises make our life a lot easier, and cut down on the depth of confusion required
+ * but it'd be cool if we could write code that even more closely resembles our
+ * super concise snychronous version. This brings us full-circle to actual current modern
+ * asynchronous functionality.
+ *
+ * @see async-await.js
  */
